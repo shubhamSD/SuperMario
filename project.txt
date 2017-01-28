@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<WebView android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/webpage">
+</WebView>
+
+
+
+
+
+
+
+
+
+public class MainActivity extends AppCompatActivity {
+
+    private WebView mWebView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mWebView = (WebView) findViewById(R.id.webpage);
+
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        mWebView.setWebViewClient(new WebViewClient());
+
+        mWebView.getSettings().setBuiltInZoomControls(true);
+
+        mWebView.loadUrl("http://www.facebook.com/");
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+<uses-permission android:name="android.permission.INTERNET" />
